@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 17:35+0100\n"
-"PO-Revision-Date: 2024-11-07 17:35+0100\n"
+"POT-Creation-Date: 2024-11-07 18:45+0100\n"
+"PO-Revision-Date: 2024-11-07 18:45+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -19,18 +19,26 @@ msgstr ""
 "Generated-By: Babel 2.16.0\n"
 
 #: templates/3-index.html:6 templates/4-index.html:6 templates/5-index.html:6
+#: templates/6-index.html:6 templates/7-index.html:6 templates/index.html:6
 msgid "home_title"
 msgstr "Welcome to Holberton"
 
 #: templates/3-index.html:9 templates/4-index.html:9 templates/5-index.html:9
+#: templates/6-index.html:9 templates/7-index.html:9 templates/index.html:9
 msgid "home_header"
 msgstr "Hello world!"
 
-#: templates/5-index.html:11
+#: templates/5-index.html:11 templates/6-index.html:11
+#: templates/7-index.html:11 templates/index.html:11
 msgid "logged_in_as"
 msgstr "You are logged in as %(username)s."
 
-#: templates/5-index.html:13
+#: templates/5-index.html:13 templates/6-index.html:13
+#: templates/7-index.html:13 templates/index.html:13
 msgid "not_logged_in"
 msgstr "You are not logged in."
+
+#: templates/index.html:15
+msgid "current_time_is"
+msgstr "The current time is %(current_time)s."
 

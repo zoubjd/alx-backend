@@ -2,6 +2,9 @@
 """multilingual and multi timezones Flask app"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+import pytz
+from babel import dates
+from datetime import datetime
 
 babel = Babel()
 
@@ -41,6 +44,21 @@ def get_locale():
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
+@babel.timezoneselector
+def get_timezone():
+    """Return the best match timezone"""
+    try:
+        if request.args.get('timezone'):
+            return pytz.timezone(request.args.get('timezone'))
+        elif g.user:
+            return pytz.timezone(g.user.get('timezone'))
+        else:
+            return pytz.timezone(app.config['BABEL_DEFAULT_TIMEZONE'])
+    except pytz.UnknownTimeZoneError:
+        # Fallback to default timezone if an invalid timezone is provided
+        return pytz.timezone(app.config['BABEL_DEFAULT_TIMEZONE'])
+
+
 def get_user():
     """Return a user dictionary or None"""
     login_as = request.args.get('login_as')
@@ -61,8 +79,12 @@ def before_request():
 
 @app.route('/')
 def hello():
-    """Return a HTML page"""
-    return render_template('6-index.html', user=g.user)
+    """Return an HTML page"""
+    timezone = get_timezone()
+    locale = get_locale()  # get the selected locale
+    dt = datetime.now(tz=timezone)  # use the timezone for accurate currenttime
+    time = dates.format_datetime(dt, locale=locale)  # use locale in formatting
+    return render_template('index.html', user=g.user, time=time)
 
 
 if __name__ == '__main__':

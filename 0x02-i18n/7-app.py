@@ -74,7 +74,7 @@ def before_request():
 @app.route('/')
 def hello():
     """Return a HTML page"""
-    return render_template('5-index.html', user=g.user)
+    return render_template('7-index.html', user=g.user)
 
 
 if __name__ == '__main__':
